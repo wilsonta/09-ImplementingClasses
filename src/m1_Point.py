@@ -3,8 +3,19 @@ A simple   Point   class.
 NOTE: This is NOT rosegraphics -- it is your OWN Point class.
 
 Authors: David Mutchler, Vibha Alangar, Dave Fisher, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Tim Wilson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
+class Point(object):
+    """holds data for a 2D Point (x and y) and their operations"""
+    def __init__(self,x,y):
+        """__init__ gives values to the instance variables"""
+        self.x=x
+        self.y=y
+    def __repr__(self):
+        return "Point({}, {})".format(self.x,self.y)
+    def clone(self):
+        return Point(self.x,self.y)
+    def move_to(self,x,y):
 
 
 def main():
@@ -27,11 +38,11 @@ def main():
 ###############################################################################
 
 # -----------------------------------------------------------------------------
-# TODO: 2.          With your instructor, READ THE INSTRUCTIONS in
-# TODO (continued)  in file  m0_INSTRUCTIONS.txt, asking questions as needed.
+# DONE: 2.          With your instructor, READ THE INSTRUCTIONS in
+# DONE (continued)  in file  m0_INSTRUCTIONS.txt, asking questions as needed.
 #
-# TODO (continued): Then implement a class called   Point that has NO METHODS
-# TODO (continued)  yet, just the lines that start the definition of any class:
+# DONE (continued): Then implement a class called   Point that has NO METHODS
+# DONE (continued)  yet, just the lines that start the definition of any class:
 #
 #      class NAME_OF_CLASS(object):
 #          """ Brief description of what objects of the class 'are'."""
@@ -92,7 +103,7 @@ def run_test_init():
         print('Actual for p2:  ', p2.x, p2.y)
     """
     # -------------------------------------------------------------------------
-    # TODO: 3.
+    # DONE: 3.
     #   a. Read the above specification of the   __init__   method.
     #        Do NOT proceed until you understand WHAT it should do
     #        (but not necessarily HOW it will do it).
@@ -121,6 +132,24 @@ def run_test_init():
     print('-----------------------------------------------------------')
     print('Testing the   __init__   method of the Point class.')
     print('-----------------------------------------------------------')
+    p1 = Point(30, 18)
+    print()
+    print('Expected for p1: 30 18')
+    print('Actual for p1:  ', p1.x, p1.y)
+
+    p2 = Point(100, -40)
+    print()
+    print('Expected for p2: 100 -40')
+    print('Actual for p2:  ', p2.x, p2.y)
+    print('Expected for p1: 30 18')
+    print('Actual for p1:  ', p1.x, p1.y)
+
+    p1.y = 999
+    print()
+    print('Expected for p1: 30 999')
+    print('Actual for p1:  ', p1.x, p1.y)
+    print('Expected for p2: 100 -40')
+    print('Actual for p2:  ', p2.x, p2.y)
 
 
 def run_test_repr():
@@ -164,14 +193,31 @@ def run_test_repr():
         print('Actual for p2:  ', p2)
     """
     # -------------------------------------------------------------------------
-    # TODO: 4.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 4.  Follow the same instructions as in _TODO_ 3 above,
     #           but for the  __repr__  method specified above.
     # -------------------------------------------------------------------------
     print()
     print('-----------------------------------------------------------')
     print('Testing the   __repr__   method of the Point class.')
     print('-----------------------------------------------------------')
+    p1 = Point(30, 18)
+    print()
+    print('Expected for p1: Point(30, 18)')
+    print('Actual for p1:  ', p1)
 
+    p2 = Point(100, -40)
+    print()
+    print('Expected for p2: Point(100, -40)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p1: Point(30, 18)')
+    print('Actual for p1:  ', p1)
+
+    p1.y = 999
+    print()
+    print('Expected for p1: Point(30, 999)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(100, -40)')
+    print('Actual for p2:  ', p2)
 
 def run_test_clone():
     """
@@ -225,14 +271,48 @@ def run_test_clone():
         print('Actual for p3:  ', p3)
    """
     # -------------------------------------------------------------------------
-    # TODO: 5.  Follow the same instructions as in _TODO_ 3 above,
+    # DONE: 5.  Follow the same instructions as in _TODO_ 3 above,
     #           but for the  clone  method specified above.
     # -------------------------------------------------------------------------
     print()
     print('-----------------------------------------------------------')
     print('Testing the   clone   method of the Point class.')
     print('-----------------------------------------------------------')
+    p1 = Point(10, 8)
+    print()
+    print('Expected for p1: Point(10, 8)')
+    print('Actual for p1:  ', p1)
 
+    p2 = p1.clone()
+    p3 = p2.clone()
+    print()
+    print('Expected for p1: Point(10, 8)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(10, 8)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p3: Point(10, 8)')
+    print('Actual for p3:  ', p3)
+
+    p1.x = 999
+    print()
+    print('Expected for p1: Point(999, 8)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(10, 8)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p3: Point(10, 8)')
+    print('Actual for p3:  ', p3)
+
+    p1.y = 333
+    p2 = Point(11, 22)
+    p3.x = 777
+    p3.y = 555
+    print()
+    print('Expected for p1: Point(999. 333)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(11, 22)')
+    print('Actual for p2:  ', p2)
+    print('Expected for p3: Point(777, 555)')
+    print('Actual for p3:  ', p3)
 
 def run_test_move_to():
     """
@@ -294,7 +374,38 @@ def run_test_move_to():
     print('-----------------------------------------------------------')
     print('Testing the   move_to   method of the Point class.')
     print('-----------------------------------------------------------')
+    p1 = Point(10, 8)
+    p2 = Point(50, 20)
+    print()
+    print('Expected for p1: Point(10, 8)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(50, 20)')
+    print('Actual for p2:  ', p2)
 
+    p1.move_to(5, -1)
+    p2.move_to(0, 0)
+    print()
+    print('Expected for p1: Point(5, -1)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(0, 0)')
+    print('Actual for p2:  ', p2)
+
+    p2.y = 99
+    print()
+    print('Expected for p1: Point(5, -1)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(0, 99)')
+    print('Actual for p2:  ', p2)
+
+    check_has_no_return = p2.move_to(0, 222)
+    print()
+    print('Expected for p1: Point(5, -1)')
+    print('Actual for p1:  ', p1)
+    print('Expected for p2: Point(0, 222)')
+    print('Actual for p2:  ', p2)
+    if check_has_no_return is not None:
+        print('** FAILED: This method should NOT return an explicit')
+        print('** value; in fact, it returned:', check_has_no_return)
 
 def run_test_move_by():
     """
